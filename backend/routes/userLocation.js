@@ -22,16 +22,18 @@ router.post ('/enteruserdata', async (req, res) => {
 
 router.get ('/findnearesthospital/:id', async (req, res) => {
     const id = req.params.id ;
-    const {latitude, longitude, pincode} = req.body;
     
     const allData = db.get('hospitals');
-    console.log(pincode);
+    
     console.log(id);
     allData.find( { "VIDAL NETWORK LIST.Pin Code" : id} , (err, data) => {
-        console.log(data);
-        res.json(data);
+        const check = data[0];
+        const newWorld = check["VIDAL NETWORK LIST"];
+        var newIndex = Math.floor(Math.random() * 6000) + 1; 
+        console.log(newIndex)
+        res.send((check["VIDAL NETWORK LIST"][newIndex]));
     })
 
 })
 
-module.exports = router ;
+module.exports = router ;15
