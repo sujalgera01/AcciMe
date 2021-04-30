@@ -20,13 +20,17 @@ router.post ('/enteruserdata', async (req, res) => {
     }
 })
 
-router.get ('/findnearesthospital', async (req, res) => {
-    const {latitude, longitude, pincode} = req.body ;
+router.get ('/findnearesthospital/:id', async (req, res) => {
+    const id = req.params.id ;
+    const {latitude, longitude, pincode} = req.body;
     
     const allData = db.get('hospitals');
-    
-    const api = allData.find( { "VIDAL NETWORK LIST" } )
-    console.log(api);
+    console.log(pincode);
+    console.log(id);
+    allData.find( { "VIDAL NETWORK LIST.Pin Code" : id} , (err, data) => {
+        console.log(data);
+        res.json(data);
+    })
 
 })
 
