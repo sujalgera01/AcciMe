@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AcciMe">
-        <activity android:name=".registration"></activity>
-        <activity android:name=".register" />
+        <activity
+            android:name=".registration"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".register"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".login"
             android:theme="@style/Theme.AppCompat.NoActionBar">
