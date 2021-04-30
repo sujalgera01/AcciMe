@@ -203,7 +203,7 @@
         android:background="@drawable/round_border"
         android:backgroundTint="#200030"
         android:text="REGISTER"
-        android:textColor="@color/white"
+        android:textColor="#FBFBFB"
         android:textSize="16sp"
         app:backgroundTint="#200030"
         app:cornerRadius="50dp"
