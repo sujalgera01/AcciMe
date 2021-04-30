@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AcciMe</string>
+    <string name="we_care">WE CARE</string>
+    <string name="because">because</string>
+    <string name="accime">AcciMe</string>
+    <string name="todo">TODO</string>
+    <string name="welcome">WELCOME</string>
+    <string name="sign_in_to_continue">Sign in to continue!</string>
+    <string name="todo2">TODO</string>
+</resources>
