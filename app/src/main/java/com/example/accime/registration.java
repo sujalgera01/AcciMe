@@ -34,24 +34,24 @@ public class registration extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (firstname.getText().toString().isEmpty()  ) {
+                    Toast.makeText(getApplicationContext(), "PLEASE ENTER FIRST NAME", Toast.LENGTH_SHORT).show();
+                }else if(lastname.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "PLEASE ENTER LAST NAME", Toast.LENGTH_SHORT).show();
+                }else if(email_reg.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "PLEASE ENTER EMAIL", Toast.LENGTH_SHORT).show();
+                }else if(phone.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "PLEASE ENTER PHONE", Toast.LENGTH_SHORT).show();
+                }else if(aadhar.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "PLEASE ENTER YOUR AADHAR NUMBER", Toast.LENGTH_SHORT).show();
+                }else if(password.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "PLEASE ENTER PASSWORD", Toast.LENGTH_SHORT).show();
+                }else if(ConfirmPass.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "PLEASE CONFIRM PASSWORD", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        if (firstname.getText().toString().isEmpty()  ) {
-            Toast.makeText(getApplicationContext(), "PLEASE ENTER FIRST NAME", Toast.LENGTH_SHORT).show();
-        }else if(lastname.getText().toString().isEmpty()){
-            Toast.makeText(getApplicationContext(), "PLEASE ENTER LAST NAME", Toast.LENGTH_SHORT).show();
-        }else if(email_reg.getText().toString().isEmpty()){
-            Toast.makeText(getApplicationContext(), "PLEASE ENTER EMAIL", Toast.LENGTH_SHORT).show();
-        }else if(phone.getText().toString().isEmpty()){
-            Toast.makeText(getApplicationContext(), "PLEASE ENTER PHONE", Toast.LENGTH_SHORT).show();
-        }else if(aadhar.getText().toString().isEmpty()){
-            Toast.makeText(getApplicationContext(), "PLEASE ENTER YOUR AADHAR NUMBER", Toast.LENGTH_SHORT).show();
-        }else if(password.getText().toString().isEmpty()){
-            Toast.makeText(getApplicationContext(), "PLEASE ENTER PASSWORD", Toast.LENGTH_SHORT).show();
-        }else if(ConfirmPass.getText().toString().isEmpty()){
-            Toast.makeText(getApplicationContext(), "PLEASE CONFIRM PASSWORD", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
-        }
     }
 }
