@@ -33,13 +33,12 @@ router.get ('/findnearesthospital/:id', async (req, res) => {
     console.log(id);
 
     allData.find( { "State" : id} , (err, data) => {
-        res.json(data);
+        const newIndex = Math.floor(Math.random() * 20) + 1; 
+        
+        const dynamic = data[newIndex]
+        res.json(dynamic);
     })
 
 })
 
-router.get('/gethospitalnotification', async (req, res) => {
-
-})
-
-module.exports = router ;15
+module.exports = router ;
