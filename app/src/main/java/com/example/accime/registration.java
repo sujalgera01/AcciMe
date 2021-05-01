@@ -52,20 +52,7 @@ public class registration extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = email_reg.getText().toString().trim();
-                String pass = password.getText().toString().trim();
-                progressBar.setVisibility(View.VISIBLE);
-                firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "USER CREATED", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Map_Activity.class));
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Error ! " + task.getException(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                startActivity(new Intent(registration.this, aadhar.class));
             }
             });
     }

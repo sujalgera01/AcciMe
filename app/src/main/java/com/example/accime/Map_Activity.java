@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -23,6 +28,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Map;
+
 public class Map_Activity extends AppCompatActivity {
 
     SupportMapFragment supportMapFragment;
@@ -32,6 +39,13 @@ public class Map_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_);
+        Button send_lcn = (Button)findViewById(R.id.send);
+        send_lcn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Map_Activity.this, Confirmation.class));
+            }
+        });
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
         client = LocationServices.getFusedLocationProviderClient(this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -64,7 +78,7 @@ public class Map_Activity extends AppCompatActivity {
                             LatLng latlng = new LatLng((location.getLatitude()),location.getLongitude());
 
 
-                            MarkerOptions options = new MarkerOptions().position((latlng)).title("chal gaya bc");
+                            MarkerOptions options = new MarkerOptions().position((latlng)).title("ACCIDENT HAPPENED HERE ");
                             Toast.makeText(getApplicationContext(), "Long: " + location.getLongitude() + ", Lat: " + location.getLatitude(), Toast.LENGTH_SHORT).show();
                             Locationhelper helper = new Locationhelper(
                                     location.getLongitude(),location.getLatitude()
@@ -74,7 +88,7 @@ public class Map_Activity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(getApplicationContext(), "LOCATION SENT TO NEAREST POLICE STATION(5 MIN ME NAHI AATI POLICE)", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "WAITING FOR YOUR CONFIRMATION TO SEND LOCATION", Toast.LENGTH_SHORT).show();
                                     }else {
                                         Toast.makeText(getApplicationContext(), "LOCATION NOT SAVED", Toast.LENGTH_SHORT).show();
                                     }

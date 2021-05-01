@@ -110,13 +110,12 @@ public class register extends AppCompatActivity {
                 Uri personPhoto = acct.getPhotoUrl();
                 Toast.makeText(this,"User email: " + personEmail,Toast.LENGTH_SHORT).show();
             }
-            startActivity(new Intent(register.this, Map_Activity.class));
+            startActivity(new Intent(register.this, aadhar.class));
             // Signed in successfully, show authenticated UI.
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.d("message" , e.toString());
-
         }
     }
 
