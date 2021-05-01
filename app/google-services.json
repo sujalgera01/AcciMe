@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "452972168591",
+    "project_id": "accime-d3b44",
+    "storage_bucket": "accime-d3b44.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452972168591:android:43d73a30ce0485338677fa",
+        "android_client_info": {
+          "package_name": "com.example.accime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452972168591-9m6tlvp74i5qonm6fvpvfghj2ag23n1p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEG2bUopdLgvZLb25uBGn6aI_m7cHKG_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452972168591-9m6tlvp74i5qonm6fvpvfghj2ag23n1p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

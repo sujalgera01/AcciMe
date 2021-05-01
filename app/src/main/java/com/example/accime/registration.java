@@ -1,14 +1,24 @@
 package com.example.accime;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class registration extends AppCompatActivity {
 
@@ -19,44 +29,44 @@ public class registration extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_registration);
-        View login = findViewById(R.id.tv_Login);
-        View register = findViewById(R.id.bt_register);
+        TextView login = findViewById(R.id.tv_Login);
+        Button register = findViewById(R.id.bt_register);
         EditText firstname = (EditText) findViewById(R.id.et_firstName);
         EditText lastname = (EditText) findViewById(R.id.et_lastName);
         EditText email_reg = (EditText) findViewById(R.id.et_email);
-        EditText phone = (EditText) findViewById(R.id.et_phone);
         EditText aadhar = (EditText) findViewById(R.id.et_aadhar);
         EditText password = (EditText) findViewById(R.id.et_password);
         EditText ConfirmPass = (EditText) findViewById(R.id.et_confirmppassword_register3);
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        ProgressBar progressBar = findViewById(R.id.progressBar);
+        if (firebaseAuth.getCurrentUser() != null) {
+            startActivity(new Intent(getApplicationContext(), Map_Activity.class));
+        }
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(registration.this,register.class));
+                startActivity(new Intent(registration.this, register.class));
             }
         });
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (firstname.getText().toString().isEmpty()  ) {
-                    Toast.makeText(getApplicationContext(), "PLEASE ENTER FIRST NAME", Toast.LENGTH_SHORT).show();
-                }else if(lastname.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "PLEASE ENTER LAST NAME", Toast.LENGTH_SHORT).show();
-                }else if(email_reg.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "PLEASE ENTER EMAIL", Toast.LENGTH_SHORT).show();
-                }else if(phone.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "PLEASE ENTER PHONE", Toast.LENGTH_SHORT).show();
-                }else if(aadhar.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "PLEASE ENTER YOUR AADHAR NUMBER", Toast.LENGTH_SHORT).show();
-                }else if(password.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "PLEASE ENTER PASSWORD", Toast.LENGTH_SHORT).show();
-                }else if(ConfirmPass.getText().toString().isEmpty()){
-                    Toast.makeText(getApplicationContext(), "PLEASE CONFIRM PASSWORD", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
-                }
+                String email = email_reg.getText().toString().trim();
+                String pass = password.getText().toString().trim();
+                progressBar.setVisibility(View.VISIBLE);
+                firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "USER CREATED", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Map_Activity.class));
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Error ! " + task.getException(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
-        });
+            });
     }
 }
