@@ -1,9 +1,11 @@
-fetch('https://acci-me.herokuapp.com/user/reportedAccident')
-.then(res => {
-    return res.json()
-})
-.then(data => console.log(data))
-.catch(error => console.log("Error"))
+// fetch('https://acci-me.herokuapp.com/user/reportedAccident')
+// .then(res => {
+//     return res.json()
+// })
+// .then(data => console.log(data))
+// .catch(error => console.log("Error"))
+
+
 
 
 
@@ -65,3 +67,72 @@ if (Notification.permission === "granted") {
 });
 
 }
+
+
+
+function fetchData() {
+
+    fetch("https://acci-me.herokuapp.com/user/reportedAccident")
+        .then(response => {
+            if (!response.ok) {
+                throw Error("ERROR");
+            }
+            return response.json();
+            })
+    
+            .then(data => {
+                console.log(data);
+                const html = data.data
+                .map(user => {
+                    return  `
+                <div class="user">
+                <p>Name: ${user._id}</p>
+                <p>Email: ${user.pincode}</p>
+                </div>
+                `;
+                })
+                .join('');
+                console.log(html);
+                document
+                .querySelector("#app")
+                .insertAdjacentHTML("afterbegin", "<h1>hello</h1>");
+            })
+                .catch(error => {
+                console.log(error);
+                });
+            }
+                fetchData();
+
+
+
+function postData() {
+
+    fetch("https://acci-me.herokuapp.com/user/reportedAccident" , {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json"
+        },
+    body: JSON.stringify({
+    _id: "608cfce43581054e6f61e9db",
+    pincode:"110088"
+
+    })
+})
+
+        .then(response => {
+            if (!response.ok) {
+                throw Error("ERROR");
+            }
+            return response.json();
+            })
+    
+            .then(data => {
+                console.log(data);
+                })
+                .catch(error => {
+                console.log(error);
+                });
+            }
+                postData();
+        
+    

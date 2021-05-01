@@ -102,3 +102,9 @@
      background-image: linear-gradient(to right,#649bff,#0070fa,#649bff);
      border-radius: 10px;
     }
+
+    .user{
+        background-color: #ddd;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
