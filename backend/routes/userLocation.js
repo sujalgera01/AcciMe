@@ -20,14 +20,20 @@ router.post ('/enteruserdata', async (req, res) => {
     }
 })
 
-router.get ('/findnearesthospital', async (req, res) => {
-    const {latitude, longitude, pincode} = req.body ;
+router.get ('/findnearesthospital/:id', async (req, res) => {
+    const id = req.params.id ;
     
     const allData = db.get('hospitals');
     
-    const api = allData.find( { "VIDAL NETWORK LIST" } )
-    console.log(api);
+    console.log(id);
+    allData.find( { "VIDAL NETWORK LIST.Pin Code" : id} , (err, data) => {
+        const check = data[0];
+        const newWorld = check["VIDAL NETWORK LIST"];
+        var newIndex = Math.floor(Math.random() * 6000) + 1; 
+        console.log(newIndex)
+        res.send((check["VIDAL NETWORK LIST"][newIndex]));
+    })
 
 })
 
-module.exports = router ;
+module.exports = router ;15
