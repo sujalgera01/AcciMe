@@ -12,7 +12,7 @@ router.post ('/enteruserdata', async (req, res) => {
     const {latitude, longitude, pincode} = req.body ;
     try {
         const location = new Location ({latitude, longitude, pincode})
-        // await location.save()
+        await location.save()
         res.json(location);
     } catch (e) {
         console.log(e);
@@ -20,19 +20,25 @@ router.post ('/enteruserdata', async (req, res) => {
     }
 })
 
+router.get('/reportedAccident', async (req, res) => {
+    const allData = db.get('locations')
+    allData.find ({}, (err, data) => {
+        res.json(data);
+    })
+})
+
 router.get ('/findnearesthospital/:id', async (req, res) => {
     const id = req.params.id ;
-    
     const allData = db.get('hospitals');
-    
     console.log(id);
-    allData.find( { "VIDAL NETWORK LIST.Pin Code" : id} , (err, data) => {
-        const check = data[0];
-        const newWorld = check["VIDAL NETWORK LIST"];
-        var newIndex = Math.floor(Math.random() * 6000) + 1; 
-        console.log(newIndex)
-        res.send((check["VIDAL NETWORK LIST"][newIndex]));
+
+    allData.find( { "State" : id} , (err, data) => {
+        res.json(data);
     })
+
+})
+
+router.get('/gethospitalnotification', async (req, res) => {
 
 })
 
